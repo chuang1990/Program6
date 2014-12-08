@@ -1,5 +1,7 @@
+import java.util.Random;
+
 /**
- * Created by catherinehuang on 12/1/14.
+ * Created by catherine huang on 12/1/14.
  */
 public class Player {
 
@@ -7,20 +9,42 @@ public class Player {
     private String lastName;
     private int playerID;
 
+
+    boolean changeRoom = false;
+
+    /**
+     * Constructor
+     * @param firstName String
+     * @param lastName String
+     * @param playerID int
+     */
     public Player(String firstName, String lastName, int playerID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.playerID = playerID;
     }
 
-    public int getPlayerID(){
-        return playerID;
+    /**
+     * get the player's ID number
+     * @return String
+     */
+    public String getPlayerID(){
+        return Integer.toString(playerID);
     }
 
+    /**
+     * get the first and last name of the player
+     * @return String
+     */
     public String getName(){
         return firstName + lastName;
     }
 
+    /**
+     * toString method of the Player,
+     * returns all the information about this player
+     * @return String player information
+     */
     @Override
     public String toString(){
         return firstName + " " + lastName + " Player ID: " + playerID;
@@ -40,6 +64,10 @@ public class Player {
         return true;
     }
 
+    /**
+     * calculates the HashCode of player
+     * @return int
+     */
     @Override
     public int hashCode() {
         int result = firstName != null ? firstName.hashCode() : 0;
@@ -47,4 +75,20 @@ public class Player {
         result = 31 * result + playerID;
         return result;
     }
-}
+
+    /**
+     * Determine if the player want to change room.
+     * @return boolean
+     */
+    public boolean setChangeRoom(){
+        Random r = new Random();
+        float chance = r.nextFloat();
+
+        if (chance <= 0.30f)
+            return changeRoom = false;
+
+        else
+            return changeRoom = true;
+    }
+
+}//end of Player
